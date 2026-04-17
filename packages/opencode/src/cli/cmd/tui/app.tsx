@@ -602,8 +602,9 @@ function App(props: { onSnapshot?: () => Promise<string[]> }) {
       category: "System",
     },
     {
-      title: "Toggle theme mode",
+      title: mode() === "dark" ? "Light mode" : "Dark mode",
       value: "theme.switch_mode",
+      search: "toggle appearance",
       onSelect: (dialog) => {
         setMode(mode() === "dark" ? "light" : "dark")
         dialog.clear()
@@ -734,7 +735,9 @@ function App(props: { onSnapshot?: () => Promise<string[]> }) {
       },
     },
     {
-      title: kv.get("clear_prompt_save_history", false) ? "Don't include cleared prompts in history" : "Include cleared prompts in history",
+      title: kv.get("clear_prompt_save_history", false)
+        ? "Don't include cleared prompts in history"
+        : "Include cleared prompts in history",
       value: "app.toggle.clear_prompt_history",
       category: "System",
       onSelect: (dialog) => {
